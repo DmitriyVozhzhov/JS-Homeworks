@@ -16,12 +16,12 @@ if (Math.sign(x) >= 1) {
 let x = prompt('введи сколько у тебя денег')
 let y = prompt('введи сколько денег у твоего друга')
 let z = (+x + +y);
-(z > 10) ? alert('едем на Маерку'): alert('пьем пиво');*/
+(z > 10) ? alert('едем на Маерку'): alert('пьем пиво');
 
 //task 3
 
 let age = prompt('введитe Ваш возраст', '18')
-20 <= age && age > 27 ? alert('получай повестку') : alert('гуляй ');*/
+20 <= age && age > 27 ? alert('получай повестку') : alert('гуляй ');
 
 // task 4
 let p = prompt('введите номер своего маршрута 7, 225 или 255')
@@ -223,27 +223,18 @@ for (i = 1; i <= 10; i++) {
 
 let username = prompt('Введите свое имя')
 for (i = 1; i < 4; i++) {
-	console.log('Happy birthday to you')
-	if (i == 2) {
-		console.log(Happy birthday dear $ {
-			username
-		})
-	}
+  console.log('Happy birthday to you')
+  if (i == 2) {
+    console.log(`Happy birthday dear ${username}`)
+  }
 }
 
 //task 4
-let x = confirm('нажми на ок чтоб отменить и на cancel, чтоб продолжить')
-for (let i = 0; i < 10; i++) {
-	if (x === false) {
-		console.log(i)
-		continue;
-
-	} else if (x === true) {
-		break;
-	}
+let i = 0;
+while (!window.confirm("Нажмите ок для отмены и cancel для продолжения ")) {
+  i++;
 }
 console.log(i)
-
 //task 5
 let num = prompt('введите число');
 let sum = null;
@@ -262,11 +253,7 @@ while (true) {
 	i++;
 
 	if (num > 0.9) {
-		console.log(num: $ {
-			num
-		}, iter: $ {
-			i
-		});
+		console.log(`num: ${num}, iter: ${i}`);
 		break;
 	}
 }
