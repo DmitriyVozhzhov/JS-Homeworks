@@ -19,3 +19,20 @@ arr.forEach(function (item, i, arr) {
 });
 
 // task 3
+let arr = ['AngularJS', 'jQuery'] ; 
+console.log(arr)
+arr.unshift('Backbone.js') //Добавляем в начало массива значение ‘Backbone.js’
+console.log(arr)
+arr.push('ReactJS' , 'Vue.js') // Добавляем в конец массива значения ‘ReactJS’ и ‘Vue.js’
+console.log(arr)
+ arr.splice(1, 0, 'CommonJS'); // Добавляем  в массив значение ‘CommonJS’ вторым элементом
+console.log(arr)
+//  Находим и удаляем из массива значение ‘jQuery’,
+// arr.splice(3, 1) - вариант удаления 
+
+for (let i = 0; i < arr.length; i++) {
+     if (arr[i] === 'jQuery') {
+        alert(arr[i] + ' - Это здесь лишнее');
+        delete arr[i];
+   }
+ }
