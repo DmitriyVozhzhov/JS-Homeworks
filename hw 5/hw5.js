@@ -172,3 +172,9 @@ const objects = [
 			}
 	}
 ];
+
+
+let date = objects.forEach(element => { 
+	
+});
+
