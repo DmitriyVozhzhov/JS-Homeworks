@@ -174,7 +174,132 @@ const objects = [
 ];
 
 
-let date = objects.forEach(element => { 
-	
+// Task1  Необходимо получить отсортированный массив объектов по дате.
+
+const objectsMap = objects.map((item, index) => {
+	return {
+			date: item.date
+	};
+});
+console.log(objectsMap)
+
+//Вот вариант где отсортировал массив от старой даты к новой дате
+ const sortDate = objects.sort((a, b) => {
+  a = a.date.split('-').reverse().join('');
+  b = b.date.split('-').reverse().join('');
+  return a > b ? 1 : a < b ? -1 : 0;
 });
 
+//Task 2 Необходимо получить массив объектов которые имеют enabled: true
+
+let objectEnabled = objects.filter((item) => item.enabled);
+console.log(objectEnabled);
+
+// Task 3  Необходимо получить объект объектов собранных по месяцам и годам. 
+
+const newObj = objects.reduce((acc, item) => {
+	const [day, month, year] = item.date.split("-");
+	if (year in acc) {
+			if (month in acc[year]) {
+					return {...acc, [year]: {...acc[year], [month]: [...acc[year][month], item] } };
+			}
+
+			return {...acc, [year]: {...acc[year], [month]: [item] } }
+	}
+
+	return {...acc,
+			[year]: {
+
+					[month]: [item]
+			}
+	};
+}, {});
+
+console.log(newObj);
+
+//Task 4 Необходимо получить массив объектов которым необходимо заменить relationId на полный объект данных.
+
+const result = objects.reduce((acc, item) => {
+	if (item.relation != null) {
+			let searched = objects.find(inner => inner.id === item.relation.relationId)
+
+			return [...acc,
+					{
+							...item,
+							relation: {
+									relationId: searched
+							}
+					}]
+	}
+	return acc
+}, [])
+console.log(result)
+
+// Task 5 Необходимо получить массив объектов у которых есть relation.
+
+let hasRelation  = objects.filter((item) => item.relation)
+console.log(hasRelation);
+
+// TAsk 6 .Необходимо получить получить объект в котором сформировать данные по relation объектам.
+const result1 = objects.reduce((acc, item) => {
+
+	if (item.relation != null) {
+			if (item.relation.relationId in acc) {
+					return {
+							...acc, [item.relation.relationId]:
+									[...acc[item.relation.relationId], item]
+					};
+
+			}
+			return {...acc, [item.relation.relationId]: [item]};
+
+	}
+	return acc;
+
+
+}, {});
+console.log(result1)
+
+//Task 7. Необходимо получить массив объектов чья дата приходится на 2020 год и поменять ему ключ enabled на true.
+
+const result3 = objects.reduce((acc, item) => {
+	let dateItems = item.date.split("-");
+	let year = +dateItems[dateItems.length - 1];
+	if (year === 2020) {
+			return [...acc, { ...item, enabled: true }];
+	}
+
+	return acc;
+}, []);
+
+console.log(result3)
+
+//Task 8. Необходимо получить массив объектов. Объект должен иметь значение enabled такое что если у него нет relation, то значение false. Если relation есть, то значение enbaled берется от того значение которое указано в объекте по ссылке relationId
+
+let result4 = objects.map((item) => {
+
+	if (item.relation !== null) {
+			let searched = objects.find((inner) => inner.id === item.relation.relationId);
+			return {
+					...item,
+					enabled: searched.enabled,
+			}
+	} else {
+			return {
+					...item,
+					enabled: false
+			}
+	}
+});
+
+console.log(result4);
+
+// Task  9. Необходимо получить понимание того, что есть ли у всех объектов relation
+// или нет
+
+let isRelationExist = objects.every(item => item.relation)
+console.log(isRelationExist)
+
+// Task  10. Необходимо получить понимание есть ли объекты с enabled: true
+let hasEnabledTrue = objects.some((item) => item.enabled );
+console.log(hasEnabledTrue)
